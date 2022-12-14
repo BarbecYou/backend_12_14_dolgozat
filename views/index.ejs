@@ -1,14 +1,49 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title><%= message %></title>
+    <title>Macskák</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     <script src='main.js'></script>
 </head>
+
 <body>
-    <p><%= message %></p>
+    <form>
+        <select name="color" id="">
+            <% for (let szin of szemSzinek) { %>
+                <option value=<%= szin.szem_szin %> >
+                    <%= szin.szem_szin %>
+                </option>
+            <% } %>
+        </select>
+        <input type="submit" value="Keresés a szemszínek között">
+    </form>
+
+    <% if (macskak.length> 30000) { %>
+        <video width="80%" height="auto" controls="controls">
+            <source type="video/mp4" src="https://www.youtube.com/watch?v=K3p0EFtJIn8">
+            </sources>
+        </video>
+
+    <% } else { %>
+        <table>
+            <tr>
+                <th>Súly</th>
+                <th>Szem szín</th>
+            </tr>
+
+            <% for (let macska of macskak) { %>
+                <tr>
+                    <td><%= macska.suly %></td>
+                    <td><%= macska.szem_szin %></td>
+                </tr>
+            <% } %>
+        </table>
+    <% } %>
+    <a href="/cats/new">Új macska felvétele</a>
 </body>
+
 </html>
